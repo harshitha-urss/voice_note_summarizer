@@ -2,6 +2,7 @@ services:
   - type: web
     name: voice-note-summarizer
     env: python
+    region: singapore
+    pythonVersion: 3.11.9   # <-- this line is the FIX
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
-    plan: starter
+    startCommand: streamlit run app/app.py --server.port $PORT --server.address 0.0.0.0
