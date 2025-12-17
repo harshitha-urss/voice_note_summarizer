@@ -1,7 +1,7 @@
 streamlit
 transformers==4.37.2
 tokenizers==0.15.2
-torch==2.5.1
+torch>=2.5.0
 soundfile
 pydub
 ffmpeg-python
