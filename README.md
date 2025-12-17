@@ -29,25 +29,25 @@ A Streamlit-based web application that allows users to record or upload voice no
 
 ## 📂 Project Structure
 
-  voice_note_summarizer/
-│
-├── app/
-│ ├── app.py
-│ ├── transcriber.py
-│ ├── grammar.py
-│ ├── summarizer.py
-│
-├── uploads/
-├── recordings/
-├── summaries/
-├── output/
-│
-├── requirements.txt
-├── runtime.txt
-├── render.yaml
-├── .gitignore
-├── LICENSE
-└── README.md
+    voice_note_summarizer/
+        │
+        ├── app/
+        │ ├── app.py
+        │ ├── transcriber.py
+        │ ├── grammar.py
+        │ ├── summarizer.py
+        │
+        ├── uploads/
+        ├── recordings/
+        ├── summaries/
+        ├── output/
+        │
+        ├── requirements.txt
+        ├── runtime.txt
+        ├── render.yaml
+        ├── .gitignore
+        ├── LICENSE
+        └── README.md
 
 ---
 
@@ -74,7 +74,7 @@ Faster inference with optimized models
 
 ---
 
-##📜 License
+## License
 
 This project is licensed under the MIT License.
 
