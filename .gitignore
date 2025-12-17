@@ -1,0 +1,13 @@
+venv/
+grammar_model/
+__pycache__/
+*.wav
+*.mp3
+*.ogg
+uploads/
+output/
+recordings/
+summaries/
+*.bin
+*.dll
+*.lib
