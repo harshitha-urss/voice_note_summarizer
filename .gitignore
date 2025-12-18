@@ -1,14 +1,14 @@
+# Virtual environment
 venv/
-grammar_model/
+
+# Runtime-generated files
 uploads/
 output/
-recordings/
-summaries/
+
+# Python cache
 __pycache__/
-*.wav
-*.mp3
-*.ogg
-*.m4a
-*.dll
-*.lib
-*.bin
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db

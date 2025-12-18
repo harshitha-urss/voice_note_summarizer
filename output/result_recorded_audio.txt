@@ -1,8 +1,8 @@
 Transcript:
-Hi, I hope you're fine.
+Hello, this is 4.7 seconds.
 
 Grammar Corrected:
-Hi, I hope you're fine.
+Hello, this is 4.7 seconds.
 
 Summary:
-Hi, I hope you're fine.
+Hello, this is 4.7 seconds.
