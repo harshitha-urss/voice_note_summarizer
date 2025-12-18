@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: black;
+    color: white;
+    text-align: center;
+}
+
+/* HERO */
+.hero {
+    padding: 90px 20px;
+    background: linear-gradient(to right, #00f2ff, #00ff9d);
+    color: black;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* SECTIONS */
+section {
+    padding: 55px 20px;
+}
+
+/* HEADINGS */
+h2 {
+    color: cyan;
+    margin-bottom: 15px;
+}
+
+/* LISTS */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 8px;
+    font-size: 17px;
+}
+
+/* ARCHITECTURE IMAGE */
+.architecture-img {
+    width: 55%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 25px auto;
+    border-radius: 12px;
+    box-shadow: 0 0 18px cyan;
+}
+
+/* TECHNOLOGIES */
+.tech {
+    font-size: 18px;
+    color: yellow;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 26px;
+    background: cyan;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px cyan;
+}
+
+/* FOOTER */
+footer {
+    padding: 20px;
+    background: #111;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .architecture-img {
+        width: 90%;
+    }
+}
