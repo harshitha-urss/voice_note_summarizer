@@ -1,90 +1,88 @@
 import streamlit as st
-from audiorecorder import audiorecorder
 from pathlib import Path
 
 from transcriber import transcribe_audio
 from grammar import correct_grammar
 from summarizer import summarize_text
 
-st.set_page_config(page_title="Voice Note Summarizer", layout="centered")
+# --------------------------------------------------
+# Page Config
+# --------------------------------------------------
+st.set_page_config(
+    page_title="Voice Note Summarizer",
+    layout="centered"
+)
 
 st.title("🎤 Voice Note Summarizer")
-st.caption("Record → Transcribe → Correct Grammar → Summarize")
+st.caption("Upload Audio → Transcribe → Correct Grammar → Summarize")
 
+# --------------------------------------------------
 # Create folders
+# --------------------------------------------------
 Path("uploads").mkdir(exist_ok=True)
 Path("output").mkdir(exist_ok=True)
 
 st.markdown("---")
 
-# ======================================================
-# 1️⃣ AUDIO RECORDING — AUTO STOP AT 7 SECONDS
-# ======================================================
+# --------------------------------------------------
+# 📤 UPLOAD AUDIO FILE (RENDER COMPATIBLE)
+# --------------------------------------------------
+st.subheader("Upload an Audio File")
 
-st.subheader("Record Audio (Auto Stops After 7 Seconds)")
-
-recorded_audio = audiorecorder("Start Recording", "Stop")
+uploaded = st.file_uploader(
+    "Upload .wav / .mp3 / .ogg / .m4a",
+    type=["wav", "mp3", "ogg", "m4a"]
+)
 
 audio_path = None
-
-if len(recorded_audio) > 0:
-    st.success("Recording captured!")
-
-    # 👉 Auto-trim to 7 seconds
-    recorded_audio = recorded_audio[:7 * 1000]   # 7000 ms
-
-    audio_path = "uploads/recorded_audio.wav"
-    recorded_audio.export(audio_path, format="wav")
-
-    st.audio(audio_path)
-
-# ======================================================
-# 2️⃣ UPLOAD AUDIO FILE
-# ======================================================
-
-st.subheader("Or Upload an Audio File")
-uploaded = st.file_uploader("Upload .wav / .mp3 / .ogg / .m4a", type=["wav", "mp3", "ogg", "m4a"])
 
 if uploaded:
     audio_path = f"uploads/{uploaded.name}"
     with open(audio_path, "wb") as f:
         f.write(uploaded.read())
-    st.success("File uploaded")
+
+    st.success("Audio uploaded successfully")
     st.audio(audio_path)
 
 st.markdown("---")
 
-# ======================================================
-# 3️⃣ PROCESS AUDIO
-# ======================================================
-
+# --------------------------------------------------
+# 🚀 PROCESS AUDIO
+# --------------------------------------------------
 if audio_path:
-    st.info("Processing — this may take 10–30 seconds...")
+    st.info("Processing audio… please wait ⏳")
 
-    # TRANSCRIBE
+    # 1️⃣ Transcription
     transcript = transcribe_audio(audio_path)
 
-    # GRAMMAR FIX
+    # 2️⃣ Grammar correction
     corrected = correct_grammar(transcript)
 
-    # SUMMARY
+    # 3️⃣ Summarization
     summary = summarize_text(corrected)
 
-    # Display output
-    st.markdown("### 📝 Transcript")
+    # --------------------------------------------------
+    # Display results
+    # --------------------------------------------------
+    st.subheader("📝 Transcript")
     st.write(transcript)
 
-    st.markdown("### ✨ Grammar Corrected")
+    st.subheader("✨ Grammar Corrected")
     st.write(corrected)
 
-    st.markdown("### 📌 Summary")
+    st.subheader("📌 Summary")
     st.write(summary)
 
-    # Save to file
+    # --------------------------------------------------
+    # Save output
+    # --------------------------------------------------
     out_path = f"output/result_{Path(audio_path).stem}.txt"
     with open(out_path, "w", encoding="utf-8") as f:
-        f.write("Transcript:\n" + transcript)
-        f.write("\n\nGrammar Corrected:\n" + corrected)
-        f.write("\n\nSummary:\n" + summary)
+        f.write("Transcript:\n")
+        f.write(transcript)
+        f.write("\n\nGrammar Corrected:\n")
+        f.write(corrected)
+        f.write("\n\nSummary:\n")
+        f.write(summary)
 
-    st.success(f"Saved results → {out_path}")
+    st.success(f"Results saved to `{out_path}`")
